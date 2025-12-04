@@ -1,5 +1,7 @@
+import DesktopSideBar from "@/components/Header/DesktopSideBar";
 import Header from "@/components/Header/Header";
 import ThemeProvider from "@/components/Providers/ThemeProvider";
+import { SidebarProvider } from "@/components/shadcnui/sidebar";
 import { ReactNode } from "react";
 import "./globals.css";
 
@@ -17,9 +19,14 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>) => {
 					attribute={"class"}
 					defaultTheme="dark"
 					enableSystem={false}>
-					<Header />
+					<SidebarProvider>
+						<DesktopSideBar />
+						<main className="mx-auto w-full px-3 py-3 md:px-6">
+							<Header />
 
-					<main className="mx-auto max-w-7xl px-6 py-3">{children}</main>
+							{children}
+						</main>
+					</SidebarProvider>
 				</ThemeProvider>
 			</body>
 		</html>
